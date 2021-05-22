@@ -1,10 +1,13 @@
 {
   "name": "cra-prep",
   "author": "Liz Kaufman",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automates the first few chores after running create-react-app, including making a components folder, setting up App folder, moving relevant files, and cleaning out extraneous demo code bits",
   "license": "MIT",
-  "repository": "lizkaufman/cra-prep",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizkaufman/cra-prep.git"
+  },
   "main": "index.js",
   "keywords": [
     "react",
@@ -14,9 +17,17 @@
     "setup",
     "components",
     "organize",
+    "organise",
     "folders"
   ],
   "scripts": {
     "cra-prep": "node index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/lizkaufman/cra-prep/issues"
+  },
+  "homepage": "https://github.com/lizkaufman/cra-prep#readme",
+  "bin": {
+    "cra-prep": "./index.js"
   }
 }
