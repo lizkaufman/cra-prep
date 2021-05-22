@@ -27,7 +27,5 @@
     "url": "https://github.com/lizkaufman/cra-prep/issues"
   },
   "homepage": "https://github.com/lizkaufman/cra-prep#readme",
-  "bin": {
-    "cra-prep": "./index.js"
-  }
+  "bin": "./index.js"
 }
