@@ -2,6 +2,7 @@ const fs = require("fs");
 
 function prepFiles() {
   if (!checkFiles()) {
+    //✅
     console.log(
       "This isn't a fresh CRA app. Remember to use cra-prep straight after you use create-react-app!"
     );
@@ -9,7 +10,7 @@ function prepFiles() {
   console.log(
     "Sweet, this is a fresh CRA app. Let's get started tidying it up so you can code! 😎"
   );
-  makeComponentFolders();
+  makeComponentFolders(); //✅
   moveAppFiles();
   emptyStarterCode();
 }
@@ -53,13 +54,20 @@ function checkFiles() {
 }
 
 function makeComponentFolders() {
-  // TODO: create components folder in ./src
-  // TODO: create App folder in ./src/components
+  fs.mkdirSync("./src/components");
+  fs.mkdirSync("./src/components/App");
 }
 
 function moveAppFiles() {
-  // TODO: move App.js, App.test.js, and App.css into ./src/components/App
-  // TODO: rename App.js to index.js
+  const oldPaths = ["./src/App.js", "./src/App.css", "./src/App.test.js"];
+  const newPaths = [
+    "./src/components/App/index.js",
+    "./src/components/App/App.css",
+    "./src/components/App/App.test.js",
+  ];
+  oldPaths.forEach((path, i) => {
+    fs.renameSync(path, newPaths[i]);
+  });
   // TODO: in root index.js, update line 4 import path to './components/App'
   // TODO: remove line 1 of App/index.js (import logo from './logo.svg';)
 }
