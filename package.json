@@ -15,5 +15,8 @@
     "components",
     "organize",
     "folders"
-  ]
+  ],
+  "scripts": {
+    "cra-prep": "node index.js"
+  }
 }
