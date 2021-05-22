@@ -13,6 +13,7 @@ function prepFiles() {
   makeComponentFolders(); //✅
   moveAppFiles(); //✅
   clearOutStarterCode();
+  removeDefaultLogoSVG(); //✅
 }
 
 prepFiles();
@@ -68,12 +69,14 @@ function moveAppFiles() {
   oldPaths.forEach((path, i) => {
     fs.renameSync(path, newPaths[i]);
   });
+
+  const newMainIndexContent = fs
+    .readFileSync("./src/index.js", "utf-8")
+    .replace(`'./App'`, `'./components/App'`);
+  fs.writeFileSync("./src/index.js", newMainIndexContent);
 }
 
 function clearOutStarterCode() {
-  // TODO: in root index.js, update line 4 import path to './components/App'
-  // TODO: delete logo.svg
-
   const oldAppContents = fs.readFileSync(
     "./src/components/App/index.js",
     "utf-8"
@@ -106,4 +109,10 @@ function clearOutStarterCode() {
   });
   `;
   fs.writeFileSync("./src/components/App/App.test.js", newAppTestContents);
+
+  // TODO: Clear out readme!!
+}
+
+function removeDefaultLogoSVG() {
+  fs.unlinkSync("./src/logo.svg");
 }
