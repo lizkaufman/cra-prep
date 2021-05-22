@@ -11,8 +11,8 @@ function prepFiles() {
     "Sweet, this is a fresh CRA app. Let's get started tidying it up so you can code! 😎"
   );
   makeComponentFolders(); //✅
-  moveAppFiles();
-  emptyStarterCode();
+  moveAppFiles(); //✅
+  clearOutStarterCode();
 }
 
 prepFiles();
@@ -68,13 +68,30 @@ function moveAppFiles() {
   oldPaths.forEach((path, i) => {
     fs.renameSync(path, newPaths[i]);
   });
-  // TODO: in root index.js, update line 4 import path to './components/App'
-  // TODO: remove line 1 of App/index.js (import logo from './logo.svg';)
 }
 
-function emptyStarterCode() {
-  // TODO: remove line 1 of App/index.js (import logo from './logo.svg';)
+function clearOutStarterCode() {
+  // TODO: in root index.js, update line 4 import path to './components/App'
   // TODO: delete logo.svg
-  // TODO: remove starter code JSX and CSS from App
-  // TODO: add in a simple <h1>Hello world!</h1> to the App's JSX to render on the page
+
+  const oldAppContents = fs.readFileSync(
+    "./src/components/App/index.js",
+    "utf-8"
+  );
+  let newAppContents = oldAppContents.replace(
+    `import logo from './logo.svg';`,
+    ""
+  );
+  if (newAppContents[0] === `\n`) {
+    newAppContents = newAppContents.slice(1);
+  }
+  const oldJSX = newAppContents
+    .split('<div className="App">')[1]
+    .split("</div>")[0];
+  const newJSX = "<h1>Hello world!</h1>";
+  newAppContents = newAppContents.replace(oldJSX, newJSX);
+
+  fs.writeFileSync("./src/components/App/index.js", newAppContents);
+  fs.writeFileSync("./src/components/App/App.css", "");
+  fs.writeFileSync("./src/components/App/App.test.js", "");
 }
