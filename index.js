@@ -90,8 +90,20 @@ function clearOutStarterCode() {
     .split("</div>")[0];
   const newJSX = "<h1>Hello world!</h1>";
   newAppContents = newAppContents.replace(oldJSX, newJSX);
-
   fs.writeFileSync("./src/components/App/index.js", newAppContents);
-  fs.writeFileSync("./src/components/App/App.css", "");
-  fs.writeFileSync("./src/components/App/App.test.js", "");
+
+  const newAppCSSContents = `.App {
+
+}`;
+  fs.writeFileSync("./src/components/App/App.css", newAppCSSContents);
+
+  const newAppTestContents = `describe("Your first describe block", () => {
+    test("Your first test string", () => {
+      const expected = 2;
+      const actual = 1 + 1;
+      expect(expected).toBe(actual);
+    });
+  });
+  `;
+  fs.writeFileSync("./src/components/App/App.test.js", newAppTestContents);
 }
