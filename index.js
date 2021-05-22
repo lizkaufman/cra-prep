@@ -2,18 +2,20 @@ const fs = require("fs");
 
 function prepFiles() {
   if (!checkFiles()) {
-    //✅
     console.log(
-      "This isn't a fresh CRA app. Remember to use cra-prep straight after you use create-react-app!"
+      "This isn't a fresh CRA app. 😢 Remember to use cra-prep straight after you use create-react-app!"
     );
+    return;
   }
   console.log(
     "Sweet, this is a fresh CRA app. Let's get started tidying it up so you can code! 😎"
   );
-  makeComponentFolders(); //✅
-  moveAppFiles(); //✅
+  makeComponentFolders();
+  moveAppFiles();
   clearOutStarterCode();
-  removeDefaultLogoSVG(); //✅
+  removeDefaultLogoSVG();
+
+  console.log(`All done! You're ready to go.`);
 }
 
 prepFiles();
@@ -57,6 +59,8 @@ function checkFiles() {
 function makeComponentFolders() {
   fs.mkdirSync("./src/components");
   fs.mkdirSync("./src/components/App");
+
+  console.log(" ✅ Component folder set up");
 }
 
 function moveAppFiles() {
@@ -74,6 +78,8 @@ function moveAppFiles() {
     .readFileSync("./src/index.js", "utf-8")
     .replace(`'./App'`, `'./components/App'`);
   fs.writeFileSync("./src/index.js", newMainIndexContent);
+
+  console.log(" ✅ App files moved and imports updated");
 }
 
 function clearOutStarterCode() {
@@ -110,9 +116,21 @@ function clearOutStarterCode() {
   `;
   fs.writeFileSync("./src/components/App/App.test.js", newAppTestContents);
 
-  // TODO: Clear out readme!!
+  const rootPath = process.cwd();
+  const projectName = rootPath.includes("/")
+    ? rootPath.split("/").slice(-1)
+    : rootPath.split("\\").slice(-1);
+  fs.writeFileSync(
+    "./README.md",
+    `# ${projectName}
+  `
+  );
+
+  console.log(" ✅ Starter code cleared out");
 }
 
 function removeDefaultLogoSVG() {
   fs.unlinkSync("./src/logo.svg");
+
+  console.log(" ✅ Logo SVG removed");
 }
