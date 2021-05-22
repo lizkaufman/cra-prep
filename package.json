@@ -1,4 +1,18 @@
 {
   "name": "cra-prep",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "description": "Automates the first few chores after running create-react-app, including making a components folder, setting up App folder, moving relevant files, and cleaning out extraneous demo code bits",
+  "license": "MIT",
+  "repository": "lizkaufman/cra-prep",
+  "main": "index.js",
+  "keywords": [
+    "react",
+    "cra",
+    "create-react-app",
+    "lizkaufman",
+    "setup",
+    "components",
+    "organize",
+    "folders"
+  ]
 }
