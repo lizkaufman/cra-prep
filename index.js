@@ -10,7 +10,7 @@ function prepFiles() {
     return;
   }
   console.log(
-    "Sweet, this is a fresh CRA app. Let's get started tidying it up so you can code! 😎"
+    "Sweet, this is a fresh CRA app. Let's tidy it up so you can code! 😎"
   );
   makeComponentFolders();
   moveAppFiles();
